@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://jylux7t28w7t"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1a244"]
+top_radius = 0.03
+bottom_radius = 0.03
+
+[sub_resource type="Skin" id="Skin_1a244"]
+
+[node name="Rope" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -1)
+mesh = SubResource("CylinderMesh_1a244")
+skin = SubResource("Skin_1a244")
