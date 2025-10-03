@@ -9,8 +9,17 @@ extends CharacterBody3D
 
 @export var sensitivity = 0.01
 
+@export var vida := 100
+@export var damage := 30
+var maxvida = 100
+var onCD = false
+
+@onready var hpbar = $HUD/HpBar
 @onready var cam = $Camera3D
 @onready var gc = $GrappleController
+@onready var animationPlayer = $AnimationPlayer
+@onready var AtackCD = $AttackCD
+
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 5
@@ -18,13 +27,23 @@ const JUMP_VELOCITY = 5
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func _process(delta: float) -> void:
+	update_HUD()
+	if Input.is_action_just_pressed("attack") and !onCD:
+		print("animacion")
+		animationPlayer.play("Sword_animation")
+		AtackCD.start()
+		onCD = true
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity
+		
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -45,7 +64,25 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+func attack():
+	if Input.is_action_just_pressed("attack") and !onCD:
+		animationPlayer.play("sword_animation")
+		AtackCD.start()
+		onCD = true
+
+func update_HUD():
+	hpbar.value = vida
+	
 #func _unhandled_input(event: InputEvent) -> void:
 #	if event is InputEventMouseMotion:
 #		rotate_y(-event.relativex * sensitivity)
 #		cam.rotate_x(-)
+
+
+func _on_attack_cd_timeout() -> void:
+	onCD = false
+
+
+func _on_rangodeataque_body_entered(body: Node3D) -> void:
+	print("entra body: ", body)
+	pass # Replace with function body.

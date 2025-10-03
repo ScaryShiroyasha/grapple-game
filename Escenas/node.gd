@@ -42,7 +42,7 @@ func handle_grapple(delta: float):
 	
 	
 	var displacement = target_dist - rest_lenght
-	print(displacement)
+	
 	var force = Vector3.ZERO
 	
 	if displacement > 0:
@@ -50,9 +50,10 @@ func handle_grapple(delta: float):
 		var spring_force = target_dir * spring_force_magnitude
 		
 		var vel_dot = player.velocity.dot(target_dir)
-		var damping = -damping * vel_dot * target_dir
+		#print(damping)
+		var damping1 = -damping * vel_dot * target_dir
 		
-		force = spring_force + damping
+		force = spring_force + damping1
 		
 	player.velocity += force * delta
 
