@@ -8,10 +8,12 @@ var state = States.idle
 
 func getHit(damage: float):
 	hp = hp - damage
+	print("hp: ", hp)
 	if (hp <= 0):
 		queue_free()
 
-
+func enemy():
+	pass
 
 
 func _physics_process(delta: float) -> void:

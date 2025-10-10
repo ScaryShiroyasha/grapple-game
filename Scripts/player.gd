@@ -35,6 +35,9 @@ func _process(delta: float) -> void:
 		animationPlayer.play("Sword_animation")
 		AtackCD.start()
 		onCD = true
+		print(targets)
+		for target in targets:
+			target.getHit(damage)
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -70,8 +73,8 @@ func attack():
 		animationPlayer.play("sword_animation")
 		AtackCD.start()
 		onCD = true
-		targets
-
+		
+		
 func update_HUD():
 	hpbar.value = vida
 	
@@ -86,11 +89,12 @@ func _on_attack_cd_timeout() -> void:
 
 
 func _on_rangodeataque_body_entered(body: Node3D) -> void:
-	print("entra body: ", body)
+
 	if body.has_method("enemy"):
 		targets.append(body)
 
 
 func _on_rangodeataque_body_exited(body: Node3D) -> void:
+
 	if body.has_method("enemy"):
 		targets.erase(body)
