@@ -6,6 +6,11 @@ var state = States.idle
 @export var hp = 50
 @export var speed = 5.0
 
+func getHit(damage: float):
+	hp = hp - damage
+	if (hp <= 0):
+		queue_free()
+
 
 
 
