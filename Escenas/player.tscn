@@ -1,13 +1,80 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0q8in4xdslmp"]
+[gd_scene load_steps=14 format=3 uid="uid://d0q8in4xdslmp"]
 
-[ext_resource type="Script" uid="uid://pwl7kv5pptit" path="res://Escenas/player.gd" id="1_cnkc8"]
-[ext_resource type="Script" uid="uid://dro260gjlucep" path="res://Escenas/camera_3d.gd" id="2_i8vih"]
+[ext_resource type="Script" uid="uid://pwl7kv5pptit" path="res://Scripts/player.gd" id="1_cnkc8"]
+[ext_resource type="Script" uid="uid://dro260gjlucep" path="res://Scripts/camera_3d.gd" id="2_i8vih"]
 [ext_resource type="PackedScene" uid="uid://jylux7t28w7t" path="res://rope.tscn" id="3_6njrx"]
-[ext_resource type="Script" uid="uid://catf3r6rfihv5" path="res://Escenas/node.gd" id="3_qgqwx"]
+[ext_resource type="Script" uid="uid://catf3r6rfihv5" path="res://Scripts/node.gd" id="3_qgqwx"]
+[ext_resource type="PackedScene" uid="uid://d0frgttk623xd" path="res://Assets/Untitled.glb" id="5_cgfde"]
+[ext_resource type="Texture2D" uid="uid://dgqq0i6038pv3" path="res://Assets/04healthbarempty.png" id="6_7v5l4"]
+[ext_resource type="Texture2D" uid="uid://b11e4qkrnhc6f" path="res://Assets/04-healthbarfull.png" id="7_b21vg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q3fpc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cnkc8"]
+
+[sub_resource type="Animation" id="Animation_b21vg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.588, -0.33117673, -0.499)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.3796304)]
+}
+
+[sub_resource type="Animation" id="Animation_7v5l4"]
+resource_name = "Sword_animation"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.588, -0.33117673, -0.499), Vector3(0.588, -0.33117673, -0.499)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.33333334, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.3796304), Vector3(0, 0, -1.8936822), Vector3(-0.7853982, 0, -1.6737708), Vector3(-1.0576695, 0, -1.1554079), Vector3(0, 0, -1.3796304)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ohiiw"]
+_data = {
+&"RESET": SubResource("Animation_b21vg"),
+&"Sword_animation": SubResource("Animation_7v5l4")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7v5l4"]
+size = Vector3(1.4, 2, 1.4087403)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_cnkc8")
@@ -18,17 +85,66 @@ mesh = SubResource("CapsuleMesh_q3fpc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_cnkc8")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ohiiw")
+}
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6901767, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+fov = 85.0
 script = ExtResource("2_i8vih")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -25)
 
 [node name="Rope" parent="Camera3D" instance=ExtResource("3_6njrx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.46661508)
+
+[node name="Sword" parent="Camera3D" instance=ExtResource("5_cgfde")]
+transform = Transform3D(0.0674513, 0.3485331, 0, -0.3485331, 0.0674513, 0, 0, 0, 0.355, 0.588, -0.33117673, -0.499)
 
 [node name="GrappleController" type="Node" parent="." node_paths=PackedStringArray("ray", "rope")]
 script = ExtResource("3_qgqwx")
 ray = NodePath("../Camera3D/RayCast3D")
 rope = NodePath("../Camera3D/Rope")
+
+[node name="CrossHair" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="CrossHair"]
+layout_mode = 2
+text = "."
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HpBar" type="TextureProgressBar" parent="HUD"]
+offset_left = 38.0
+offset_top = 23.0
+offset_right = 78.0
+offset_bottom = 28.0
+scale = Vector2(3, 1.5)
+texture_under = ExtResource("6_7v5l4")
+texture_progress = ExtResource("7_b21vg")
+
+[node name="AttackCD" type="Timer" parent="."]
+
+[node name="Rangodeataque" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rangodeataque"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.69562984)
+shape = SubResource("BoxShape3D_7v5l4")
+
+[connection signal="timeout" from="AttackCD" to="." method="_on_attack_cd_timeout"]
+[connection signal="body_entered" from="Rangodeataque" to="." method="_on_rangodeataque_body_entered"]
+[connection signal="body_exited" from="Rangodeataque" to="." method="_on_rangodeataque_body_exited"]
