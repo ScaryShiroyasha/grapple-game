@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0q8in4xdslmp"]
+[gd_scene load_steps=18 format=3 uid="uid://d0q8in4xdslmp"]
 
 [ext_resource type="Script" uid="uid://pwl7kv5pptit" path="res://Scripts/player.gd" id="1_cnkc8"]
 [ext_resource type="Script" uid="uid://dro260gjlucep" path="res://Scripts/camera_3d.gd" id="2_i8vih"]
 [ext_resource type="PackedScene" uid="uid://jylux7t28w7t" path="res://rope.tscn" id="3_6njrx"]
-[ext_resource type="Script" uid="uid://catf3r6rfihv5" path="res://Scripts/node.gd" id="3_qgqwx"]
+[ext_resource type="Script" uid="uid://catf3r6rfihv5" path="res://Scripts/GrappleController.gd" id="3_qgqwx"]
 [ext_resource type="PackedScene" uid="uid://d0frgttk623xd" path="res://Assets/Untitled.glb" id="5_cgfde"]
 [ext_resource type="Texture2D" uid="uid://dgqq0i6038pv3" path="res://Assets/04healthbarempty.png" id="6_7v5l4"]
 [ext_resource type="Texture2D" uid="uid://b11e4qkrnhc6f" path="res://Assets/04-healthbarfull.png" id="7_b21vg"]
+[ext_resource type="Script" uid="uid://vka6k03xp1f7" path="res://Scripts/WavyLinePath3D.gd" id="8_ohiiw"]
+[ext_resource type="Shader" uid="uid://c30na0obdky88" path="res://addons/godot-polyliner/shaders/line_pbr.tres" id="9_knqkl"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q3fpc"]
 
@@ -76,6 +78,23 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_7v5l4"]
 size = Vector3(1.4, 2, 1.4087403)
 
+[sub_resource type="Curve3D" id="Curve3D_ul4kv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oba5i"]
+render_priority = 0
+shader = ExtResource("9_knqkl")
+shader_parameter/line_width = 0.05
+shader_parameter/tangent_facing = false
+shader_parameter/rounded = true
+shader_parameter/tube_normal = true
+shader_parameter/uv_matches_width = true
+shader_parameter/tex_scale = Vector2(1, 1)
+shader_parameter/tex_stretch = true
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/metallic = 0.10999999754128
+shader_parameter/specular = 0.14499999675896
+shader_parameter/roughness = 0.124999997206
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_cnkc8")
 
@@ -100,6 +119,7 @@ target_position = Vector3(0, 0, -25)
 
 [node name="Rope" parent="Camera3D" instance=ExtResource("3_6njrx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.46661508)
+visible = false
 
 [node name="Sword" parent="Camera3D" instance=ExtResource("5_cgfde")]
 transform = Transform3D(0.0674513, 0.3485331, 0, -0.3485331, 0.0674513, 0, 0, 0, 0.355, 0.588, -0.33117673, -0.499)
@@ -107,7 +127,7 @@ transform = Transform3D(0.0674513, 0.3485331, 0, -0.3485331, 0.0674513, 0, 0, 0,
 [node name="GrappleController" type="Node" parent="." node_paths=PackedStringArray("ray", "rope")]
 script = ExtResource("3_qgqwx")
 ray = NodePath("../Camera3D/RayCast3D")
-rope = NodePath("../Camera3D/Rope")
+rope = NodePath("../LinePath3D")
 
 [node name="CrossHair" type="CenterContainer" parent="."]
 anchors_preset = 8
@@ -144,6 +164,15 @@ texture_progress = ExtResource("7_b21vg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rangodeataque"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.69562984)
 shape = SubResource("BoxShape3D_7v5l4")
+
+[node name="LinePath3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_ul4kv")
+script = ExtResource("8_ohiiw")
+amplitude = 0.4
+frequency = 4.5
+speed = 10.0
+material = SubResource("ShaderMaterial_oba5i")
+metadata/_custom_type_script = "uid://bxbv8af8p5ga"
 
 [connection signal="timeout" from="AttackCD" to="." method="_on_attack_cd_timeout"]
 [connection signal="body_entered" from="Rangodeataque" to="." method="_on_rangodeataque_body_entered"]
