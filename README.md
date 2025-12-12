@@ -93,7 +93,7 @@ Ejecuta el .exe.
 
 <div align="center">
 
-Desarrollado con ❤️ por [Tu Nombre / Nombre de tu Equipo]
+Desarrollado Por Diego Acevedo y Alex Urrutia
 Universidad Técnica Federico Santa María - 2025
 
 </div>
