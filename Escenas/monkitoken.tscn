@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5vjhytvclayi"]
+
+[ext_resource type="Script" uid="uid://jcpxxgskd8y8" path="res://Escenas/monkiscript.gd" id="1_lpc20"]
+[ext_resource type="PackedScene" uid="uid://b4tvgf8w7mn78" path="res://Escenas/Monki.glb" id="2_yjw42"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_418oe"]
+
+[node name="Area3D" type="Area3D" groups=["monkitoken"]]
+collision_layer = 128
+script = ExtResource("1_lpc20")
+
+[node name="Monki" parent="." instance=ExtResource("2_yjw42")]
+transform = Transform3D(0.4024672, 0, 0, 0, 0.13786742, 0, 0, 0, 0.12416316, -0.16463202, 0.20555522, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13393068, 0.6782587, 0)
+shape = SubResource("SphereShape3D_418oe")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13393068, 0.6782587, 0)
+light_color = Color(1, 0.8, 0.3, 1)
+light_energy = 2.0
+omni_range = 8.0
+omni_attenuation = 2.0

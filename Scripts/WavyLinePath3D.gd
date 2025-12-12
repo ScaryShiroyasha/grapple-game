@@ -52,7 +52,7 @@ func _draw():
 		# Nuestro dibujo se maneja externamente por update_wavy_line().
 		
 		# Opcional: Limpia la malla si no se está actualizando
-		if _mesh_instance.mesh != null:
+		if _mesh_instance != null and _mesh_instance.mesh != null:
 			_mesh_instance.mesh = null
 		return
 

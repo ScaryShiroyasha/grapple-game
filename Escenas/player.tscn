@@ -1,14 +1,20 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0q8in4xdslmp"]
+[gd_scene load_steps=30 format=3 uid="uid://d0q8in4xdslmp"]
 
 [ext_resource type="Script" uid="uid://pwl7kv5pptit" path="res://Scripts/player.gd" id="1_cnkc8"]
 [ext_resource type="Script" uid="uid://dro260gjlucep" path="res://Scripts/camera_3d.gd" id="2_i8vih"]
 [ext_resource type="PackedScene" uid="uid://jylux7t28w7t" path="res://rope.tscn" id="3_6njrx"]
 [ext_resource type="Script" uid="uid://catf3r6rfihv5" path="res://Scripts/GrappleController.gd" id="3_qgqwx"]
+[ext_resource type="PackedScene" uid="uid://dt5b6ruejliab" path="res://Assets/Blends-20251107T230437Z-1-001/Blends/Sword.blend" id="3_r84g6"]
 [ext_resource type="PackedScene" uid="uid://d0frgttk623xd" path="res://Assets/Untitled.glb" id="5_cgfde"]
 [ext_resource type="Texture2D" uid="uid://dgqq0i6038pv3" path="res://Assets/04healthbarempty.png" id="6_7v5l4"]
+[ext_resource type="Script" uid="uid://bq3umj3mghwu0" path="res://Escenas/hud.gd" id="6_knqkl"]
 [ext_resource type="Texture2D" uid="uid://b11e4qkrnhc6f" path="res://Assets/04-healthbarfull.png" id="7_b21vg"]
 [ext_resource type="Script" uid="uid://vka6k03xp1f7" path="res://Scripts/WavyLinePath3D.gd" id="8_ohiiw"]
 [ext_resource type="Shader" uid="uid://c30na0obdky88" path="res://addons/godot-polyliner/shaders/line_pbr.tres" id="9_knqkl"]
+[ext_resource type="AudioStream" uid="uid://4n6qdchmkmny" path="res://Assets/Sounds/test1.ogg" id="11_ul4kv"]
+[ext_resource type="AudioStream" uid="uid://dyh8gofgm3mek" path="res://Assets/Sounds/test.ogg" id="12_oba5i"]
+[ext_resource type="AudioStream" uid="uid://cx6k3l2dpk8xm" path="res://Assets/Sounds/sword-sound-2-36274.mp3" id="13_vwnoe"]
+[ext_resource type="AudioStream" uid="uid://ddcgqg86xfq0i" path="res://Assets/Sounds/violent-sword-slice-393839.mp3" id="14_r84g6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q3fpc"]
 
@@ -40,43 +46,154 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, -1.3796304)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Sword2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.6929693)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Sword2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.55, -0.331, -0.499)]
+}
 
 [sub_resource type="Animation" id="Animation_7v5l4"]
 resource_name = "Sword_animation"
-length = 0.75
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Sword:position")
+tracks/0/path = NodePath("Camera3D/Sword3:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1.0352646),
 "update": 0,
-"values": [Vector3(0.588, -0.33117673, -0.499), Vector3(0.588, -0.33117673, -0.499)]
+"values": [Vector3(0.565, -0.41, -0.48), Vector3(0.565, -0.41, -0.48)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Sword:rotation")
+tracks/1/path = NodePath("Camera3D/Sword3:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.33333334, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.09333333, 0.22222222, 0.33333334, 0.41666666, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, -1.3796304), Vector3(0, 0, -1.8936822), Vector3(-0.7853982, 0, -1.6737708), Vector3(-1.0576695, 0, -1.1554079), Vector3(0, 0, -1.3796304)]
+"values": [Vector3(-0.25, -0.25, 0), Vector3(-0.5, -0.5, 0), Vector3(-1.2, -0.8, 0), Vector3(-1.5, -0.5, 0), Vector3(-0.5, -0.5, 0), Vector3(-0.25, -0.25, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Sword2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.55, -0.331, -0.499)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Sword2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.6929693)]
+}
+
+[sub_resource type="Animation" id="Animation_knqkl"]
+resource_name = "Sword_animation2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Sword2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.55, -0.331, -0.499)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Sword2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.6929693)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Sword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.61),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.588, -0.33117673, -0.499), Vector3(0.363, -0.331, -0.499)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Sword:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.43, 0.61),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.3796304), Vector3(0, 0.3577925, -1.998402), Vector3(-1.0995574, 0.9075712, -2.295108), Vector3(-0.80285144, 1.9722221, -2.295108)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ohiiw"]
 _data = {
 &"RESET": SubResource("Animation_b21vg"),
-&"Sword_animation": SubResource("Animation_7v5l4")
+&"Sword_animation": SubResource("Animation_7v5l4"),
+&"Sword_animation2": SubResource("Animation_knqkl")
 }
 
+[sub_resource type="Theme" id="Theme_r84g6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knqkl"]
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r84g6"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7v5l4"]
-size = Vector3(1.4, 2, 1.4087403)
+size = Vector3(1.4, 2, 2.5766602)
 
 [sub_resource type="Curve3D" id="Curve3D_ul4kv"]
 
@@ -95,7 +212,16 @@ shader_parameter/metallic = 0.10999999754128
 shader_parameter/specular = 0.14499999675896
 shader_parameter/roughness = 0.124999997206
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ul4kv"]
+playback_mode = 1
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("11_ul4kv")
+stream_1/stream = ExtResource("12_oba5i")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m87nl"]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_cnkc8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -114,8 +240,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 fov = 85.0
 script = ExtResource("2_i8vih")
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -25)
+[node name="Sword3" parent="Camera3D" instance=ExtResource("3_r84g6")]
+transform = Transform3D(0.15644811, 1.5159843e-05, 0.033525873, -0.0081355125, 0.1552348, 0.037894096, -0.0325238, -0.038757555, 0.15178952, 0.565, -0.41, -0.48)
+
+[node name="RayCast3D_left" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
+target_position = Vector3(0.1, 0, -30)
+debug_shape_custom_color = Color(0, 0, 1, 1)
 
 [node name="Rope" parent="Camera3D" instance=ExtResource("3_6njrx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.46661508)
@@ -123,11 +254,28 @@ visible = false
 
 [node name="Sword" parent="Camera3D" instance=ExtResource("5_cgfde")]
 transform = Transform3D(0.0674513, 0.3485331, 0, -0.3485331, 0.0674513, 0, 0, 0, 0.355, 0.588, -0.33117673, -0.499)
+visible = false
 
-[node name="GrappleController" type="Node" parent="." node_paths=PackedStringArray("ray", "rope")]
+[node name="Sword2" parent="Camera3D" instance=ExtResource("5_cgfde")]
+transform = Transform3D(-0.043263596, 0.35235387, 0, -0.35235387, -0.043263596, 0, 0, 0, 0.355, -0.55, -0.331, -0.499)
+visible = false
+
+[node name="RayCast_right" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
+target_position = Vector3(-0.1, 0, -30)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast_central" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -30)
+debug_shape_custom_color = Color(0, 0.62352943, 0, 1)
+
+[node name="GrappleController" type="Node" parent="." node_paths=PackedStringArray("ray_left", "rope_left", "ray_right", "rope_right", "crosshair")]
 script = ExtResource("3_qgqwx")
-ray = NodePath("../Camera3D/RayCast3D")
-rope = NodePath("../LinePath3D")
+ray_left = NodePath("../Camera3D/RayCast3D_left")
+rope_left = NodePath("../LinePath3D")
+ray_right = NodePath("../Camera3D/RayCast_right")
+rope_right = NodePath("../LinePath3D2")
+crosshair = NodePath("../CrossHair/Dot")
 
 [node name="CrossHair" type="CenterContainer" parent="."]
 anchors_preset = 8
@@ -142,13 +290,19 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="CrossHair"]
+[node name="Dot" type="Label" parent="CrossHair"]
 layout_mode = 2
+theme = SubResource("Theme_r84g6")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 60
 text = "."
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("label")]
+script = ExtResource("6_knqkl")
+label = NodePath("Label")
 
 [node name="HpBar" type="TextureProgressBar" parent="HUD"]
+visible = false
 offset_left = 38.0
 offset_top = 23.0
 offset_right = 78.0
@@ -157,15 +311,43 @@ scale = Vector2(3, 1.5)
 texture_under = ExtResource("6_7v5l4")
 texture_progress = ExtResource("7_b21vg")
 
+[node name="Label" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -158.0
+offset_bottom = 51.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_knqkl")
+text = "Tokens: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -101.0
+offset_right = 500.0
+offset_bottom = -32.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_r84g6")
+text = "Q/R - GanchoLiania | Click Izquierdo - Golpear
+Power-up Dash - Shift | Doble salto - Espacio "
+
 [node name="AttackCD" type="Timer" parent="."]
 
 [node name="Rangodeataque" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rangodeataque"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.69562984)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2339599)
 shape = SubResource("BoxShape3D_7v5l4")
 
 [node name="LinePath3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
 curve = SubResource("Curve3D_ul4kv")
 script = ExtResource("8_ohiiw")
 amplitude = 0.4
@@ -173,6 +355,42 @@ frequency = 4.5
 speed = 10.0
 material = SubResource("ShaderMaterial_oba5i")
 metadata/_custom_type_script = "uid://bxbv8af8p5ga"
+
+[node name="LinePath3D2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+curve = SubResource("Curve3D_ul4kv")
+script = ExtResource("8_ohiiw")
+amplitude = 0.4
+frequency = 4.5
+speed = 10.0
+material = SubResource("ShaderMaterial_oba5i")
+metadata/_custom_type_script = "uid://bxbv8af8p5ga"
+
+[node name="HookSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ul4kv")
+
+[node name="sfx_miss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_vwnoe")
+
+[node name="sfx_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_r84g6")
+volume_db = -5.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -468.0
+offset_top = -66.0
+offset_right = -10.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_m87nl")
+text = "Cada 3 enemigos rescatas a un amigo!"
 
 [connection signal="timeout" from="AttackCD" to="." method="_on_attack_cd_timeout"]
 [connection signal="body_entered" from="Rangodeataque" to="." method="_on_rangodeataque_body_entered"]

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cv0dbpp4mjqsp"]
+
+[ext_resource type="Shader" uid="uid://c4wigrp7i2cdk" path="res://Assets/s_explosion_cloud.tres" id="1_btmsn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_btmsn")
+shader_parameter/Cload_speed = 0.2
+shader_parameter/Cloud_intensity = 0.205
+shader_parameter/Dissapear_Cloud = 0.0
+shader_parameter/Explosion_color = Color(1, 0.284935, 0, 1)
+shader_parameter/Color_intensity = 16.16
+shader_parameter/Exposion_amount = 0.046000002185

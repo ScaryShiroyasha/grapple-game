@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dxm0j3hlbr45v"
+path="res://.godot/imported/One Man Symphony - In The Blink Of An Eye (Free Version, 4 Songs, Attribution Required) - 03 Time Is A Multiplier (Action 03).ogg-fb32266d709188522db1acfffc73ed49.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/One Man Symphony - In The Blink Of An Eye (Free Version, 4 Songs, Attribution Required) - 03 Time Is A Multiplier (Action 03).ogg"
+dest_files=["res://.godot/imported/One Man Symphony - In The Blink Of An Eye (Free Version, 4 Songs, Attribution Required) - 03 Time Is A Multiplier (Action 03).ogg-fb32266d709188522db1acfffc73ed49.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

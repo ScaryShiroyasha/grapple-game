@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn4dcouboocrw"]
+
+[ext_resource type="Script" uid="uid://c3o08qsc1yaob" path="res://Escenas/pilar_movil.gd" id="1_1ki2f"]
+[ext_resource type="Texture2D" uid="uid://dq2ulhcbgt5w8" path="res://Assets/Textures - copia/Tree_Bark.jpg" id="2_prg7a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3c3w"]
+albedo_texture = ExtResource("2_prg7a")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e8t1n"]
+size = Vector3(1, 4.5659485, 1)
+
+[node name="PilarMovil" type="AnimatableBody3D"]
+script = ExtResource("1_1ki2f")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.41861, 16.412663, 0)
+material_override = SubResource("StandardMaterial3D_c3c3w")
+size = Vector3(1, 4.5440674, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.427822, 16.391254, 0)
+shape = SubResource("BoxShape3D_e8t1n")

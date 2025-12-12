@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ynuyr7q24sp"]
+
+[ext_resource type="PackedScene" uid="uid://4qcrdbtgfoix" path="res://Escenas/Monki2.glb" id="1_p77jw"]
+
+[node name="Cadena" type="Node3D"]
+
+[node name="Monki2" parent="." instance=ExtResource("1_p77jw")]
+transform = Transform3D(0.24573773, 0, 0, 0, 0.07574328, 0, 0, 0, 0.07500818, 0, 0, 0)

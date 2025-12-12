@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmqorwsxd28eh"]
+
+[ext_resource type="Material" uid="uid://cv0dbpp4mjqsp" path="res://Assets/M_explosive_cloud.tres" id="1_17tml"]
+[ext_resource type="PackedScene" uid="uid://d4c1j58ksb75f" path="res://Escenas/vfx_explosion.tscn" id="2_x2j03"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sx0py"]
+
+[node name="ShaderTest" type="Node"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8227124, 0, 0)
+visible = false
+material_override = ExtResource("1_17tml")
+mesh = SubResource("SphereMesh_sx0py")
+
+[node name="VFX_Explosion" parent="." instance=ExtResource("2_x2j03")]

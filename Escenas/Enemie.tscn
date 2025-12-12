@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3s6u4l5em63l"]
+[gd_scene load_steps=8 format=3 uid="uid://b3s6u4l5em63l"]
 
 [ext_resource type="Script" uid="uid://bb3a768q0nq6" path="res://Scripts/Enemie.gd" id="1_ft17k"]
+[ext_resource type="PackedScene" uid="uid://d4c1j58ksb75f" path="res://Escenas/vfx_explosion.tscn" id="2_8fjls"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wuat"]
 albedo_color = Color(0.94647485, 0, 0.0700747, 1)
@@ -10,11 +11,40 @@ material = SubResource("StandardMaterial3D_4wuat")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4wuat"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_8fjls"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kb4oi"]
+size = Vector3(1.52, 0.835, 1.345)
+
 [node name="Enemie" type="CharacterBody3D"]
 script = ExtResource("1_ft17k")
+explosion_scene = ExtResource("2_8fjls")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4wuat")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_4wuat")
+
+[node name="VFX_Explosion" parent="." instance=ExtResource("2_8fjls")]
+visible = false
+
+[node name="AreaDeteccion" type="Area3D" parent="."]
+
+[node name="EsferaDetect" type="CollisionShape3D" parent="AreaDeteccion"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.875, 0)
+shape = SubResource("SphereShape3D_8fjls")
+
+[node name="CuboDetect" type="CollisionShape3D" parent="AreaDeteccion"]
+transform = Transform3D(7.69, 0, 0, 0, 7.69, 0, 0, 0, 7.69, 0, -3.15, 0)
+shape = SubResource("BoxShape3D_kb4oi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="body_entered" from="AreaDeteccion" to="." method="_on_explosion_area_deteccion_body_entered"]
+[connection signal="body_exited" from="AreaDeteccion" to="." method="_on_explosion_area_deteccion_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

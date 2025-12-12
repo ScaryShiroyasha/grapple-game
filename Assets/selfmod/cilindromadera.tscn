@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3ksuolylak3e"]
+
+[ext_resource type="Texture2D" uid="uid://cbd705hv3gd7a" path="res://Assets/Freebies/Weathered Wood Fencing.png" id="1_aqif7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdadj"]
+albedo_texture = ExtResource("1_aqif7")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aojqf"]
+material = SubResource("StandardMaterial3D_fdadj")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 8.0
+cap_bottom = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aqif7"]
+points = PackedVector3Array(-0.856511, -3.7924118, -1.8046583, 0.091132514, 3.8085632, 1.9955363, 0.68579364, 3.8083944, 1.8762739, -0.5038528, 3.8106627, -1.933127, 1.9986504, -3.8146257, -0.02755423, -1.5505962, -3.751803, 1.2625996, -1.9331362, 3.811427, -0.50381625, 1.500354, 3.7602155, -1.3191559, 0.68579364, -3.8083944, 1.8762739, 0.56327677, -3.7817905, -1.9182398, 1.8761902, 3.8082204, 0.6860275, -1.5505962, 3.751803, 1.2625996, -1.9331362, -3.811427, -0.50381625, -0.7342143, -3.7726352, 1.8589545, 1.4142224, -3.846891, 1.4141752, -1.4714899, 3.8488488, -1.3509985, 1.500354, -3.7602155, -1.3191559, -1.918157, 3.7823737, 0.56360745, 1.8589911, 3.7727063, -0.73411185, 0.56327677, 3.7817905, -1.9182398, -0.97308564, 3.7831085, 1.7456429, -1.4714899, -3.8488488, -1.3509985, -1.918157, -3.7823737, 0.56360745, 1.4142224, 3.846891, 1.4141752, 1.8761469, -3.808925, 0.6861485, -0.027745945, -3.8145845, 1.998641, 1.9986504, 3.8146257, -0.02755423, 1.8589416, -3.77339, -0.73425066, -0.5038528, -3.8106627, -1.933127, 1.2624149, -3.7522042, -1.5507331, -1.0878462, 3.7722285, -1.6768411, -1.8047013, -3.7924783, -0.8564201)
+
+[node name="Cilindro" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = SubResource("CylinderMesh_aojqf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_aqif7")
