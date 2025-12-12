@@ -37,37 +37,21 @@ Pero no estás solo, enemigos explosivos te perseguirán implacablemente, oblig�
 
 🎮 Controles
 
-Acción
 
-Tecla / Mouse
 
-Moverse
+Moverse: W, A, S, D
 
-W, A, S, D
+Saltar / Doble Salto:  Barra Espaciadora
 
-Saltar / Doble Salto
+Gancho Izquierdo:  Q (Mantener para balancear)
 
-Barra Espaciadora
+Gancho Derecho:  E (Mantener para balancear)
 
-Gancho Izquierdo
+Retraer Gancho:  Click Derecho o Rueda Abajo
 
-Q (Mantener para balancear)
+Atacar:  Click Izquierdo
 
-Gancho Derecho
-
-E (Mantener para balancear)
-
-Retraer Gancho (Impulso)
-
-Click Derecho o Rueda Abajo
-
-Atacar
-
-Click Izquierdo
-
-Dash (Esquivar)
-
-Shift
+Dash:  Shift
 
 🛠️ Tecnologías Usadas
 
